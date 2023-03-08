@@ -12,7 +12,7 @@ navbar:
   right:
   - icon: fab fa-github
     text: Source code
-    href: https://github.com/kshitijtandon/working-with-pplacer
+    href: https://github.com/kshitijtandon1990@gmail.com/working-with-pplacer
 output:
   workflowr::wflow_html:
     toc: yes
