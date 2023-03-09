@@ -1,5 +1,3 @@
 # working-with-pplacer
 
-A [workflowr][] project.
-
-[workflowr]: https://github.com/workflowr/workflowr
+Refer to  the following link for detailed analysis [GitHub](https://kshitijtandon.github.io/working-with-pplacer/)
