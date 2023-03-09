@@ -1,0 +1,77 @@
+---
+title: "Setting up PPlacer analysis"
+author: "Kshitij"
+date: "2023-03-03"
+output: html_document
+---
+
+# Resolving the **pplacer** issue
+
+Following approach was used to get the pplacer working on the demo dataset
+
+**Note**: __pplacer__ is notoriously finicky about **fasta headers**, I learned it while trying to process this data. 
+
+## Dataset used
+I used the Endo dataset Ashley provided.
+**Location**
+
+_/data/gpfs/projects/punim1682/kshitij/mdap-workflow-comparison/development/mdap-dungan-fatcat/barrnap_branch_ashley/kshitij_barrnap_trial_
+
+## Steps involved
+
+### **Extract 16S rRNA sequences using barrnap**
+
+```console
+for fna in ALB032_contigs.fna ALB051_contigs.fna ALB060_contigs.fna ALB091_contigs.fna ALB115_contigs.fna ALB122_contigs.fna ALC013_$
+
+do
+barrnap -k bac --threads 8 -o rrna_$fna < $fna > gff_$fna
+done
+
+grep -A 1 --no-filename "^>16S_rRNA" rrna_* | grep -v "^--" > 16sENDO.fna
+```
+### **Remove identical sequences**
+
+_pplacer doesn't like 0 branch lengths i.e. identical sequences in the tree so removed them using_  [seqmagick](https://seqmagick.readthedocs.io/en/latest/index.html)
+
+```console
+seqmagick convert --deduplicate-sequences 16sENDO.fna 16SENDO_deduplicated.fasta
+```
+
+### **Modify the headers of the fasta file** 
+
+__I noticed that when aligning and creating the tree, headers were being trimmed, creating the mismatch. So simplify the headers__
+
+### **Perform the alignment using clustal-omega**
+
+```console
+clustalo -i 16SENDO_deduplicated.fasta -o kshitij_16sENDO_clustalo_aln.fa -t DNA
+```
+### **Create a reference phylogenetic tree** 
+
+_I used **FastTree** with _GTR-GAMMA_model to create the reference phylogenetic tree. For FATCAT, we should use **RAxML**_ 
+
+```console
+FastTree -nt -gamma -gtr -log kshitij_fasttree.log kshitij_16sENDO_clustalo_aln.fa > kshitij_fasttree.tre
+```
+
+### **Prepare the reference package**
+
+Since pplacer has been update, it now requires us to create a **reference package**. I created this using 
+[Taxtastic](https://github.com/fhcrc/taxtastic)
+
+```console
+taxit create -l endozoicomonas_16S -P endo.refpkg --aln-fasta kshitij_16sENDO_clustalo_aln.fa --tree-stats kshitij_fasttree.log --tree-file kshitij_fasttree.tre
+```
+
+### **Perform phylogenetic placement of the input seqs using [pplacer](https://matsen.github.io/pplacer/generated_rst/pplacer.html)**
+
+_Important to note is that **pplacer** takes alignment file (a combination of reference sequences and query sequences) as input_
+
+```console
+pplacer -m WAG -j 1 -c endo.refpkg ENDOout.fa -o test_pplacer
+```
+
+
+
+

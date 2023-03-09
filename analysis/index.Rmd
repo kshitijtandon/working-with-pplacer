@@ -9,3 +9,4 @@ editor_options:
 ---
 
 Welcome to my research website.
+Click on this [link](Pplacer_work.html) to approach used to setup and work with _pplacer_.
