@@ -9,9 +9,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Kshitij" />
 
+<meta name="date" content="2023-03-03" />
 
-<title>Home</title>
+<title>Setting up PPlacer analysis</title>
 
 <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,6 +31,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -231,6 +236,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -238,6 +306,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -281,7 +359,9 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Home</h1>
+<h1 class="title toc-ignore">Setting up PPlacer analysis</h1>
+<h4 class="author">Kshitij</h4>
+<h4 class="date">2023-03-03</h4>
 
 </div>
 
@@ -411,10 +491,11 @@ have uncommitted changes.
 
 <p>
 These are the previous versions of the repository in which changes were
-made to the R Markdown (<code>analysis/index.Rmd</code>) and HTML
-(<code>docs/index.html</code>) files. If you’ve configured a remote Git
-repository (see <code>?wflow_git_remote</code>), click on the hyperlinks
-in the table below to view the files as they were in that past version.
+made to the R Markdown (<code>analysis/Pplacer_work.Rmd</code>) and HTML
+(<code>docs/Pplacer_work.html</code>) files. If you’ve configured a
+remote Git repository (see <code>?wflow_git_remote</code>), click on the
+hyperlinks in the table below to view the files as they were in that
+past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -443,7 +524,7 @@ Message
 Rmd
 </td>
 <td>
-<a href="https://github.com/kshitijtandon/working-with-pplacer/blob/a413b1bdc28655508ece4e11a181718844ed5ba0/analysis/index.Rmd" target="_blank">a413b1b</a>
+<a href="https://github.com/kshitijtandon/working-with-pplacer/blob/a413b1bdc28655508ece4e11a181718844ed5ba0/analysis/Pplacer_work.Rmd" target="_blank">a413b1b</a>
 </td>
 <td>
 Kshitij
@@ -455,40 +536,6 @@ Kshitij
 Pplacer setup and worflow
 </td>
 </tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/kshitijtandon/working-with-pplacer/3a463dfdf94c02461303b425522fe4592bd86697/docs/index.html" target="_blank">3a463df</a>
-</td>
-<td>
-Kshitij
-</td>
-<td>
-2023-03-09
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/kshitijtandon/working-with-pplacer/blob/e836bfbfed2c50dc74419a23a97146e05b306ed5/analysis/index.Rmd" target="_blank">e836bfb</a>
-</td>
-<td>
-Kshitij
-</td>
-<td>
-2023-03-09
-</td>
-<td>
-Start workflowr project.
-</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -496,9 +543,75 @@ Start workflowr project.
 </div>
 </div>
 </div>
-<p>Welcome to my research website. Click on this <a
-href="Pplacer_work.html">link</a> to approach used to setup and work
-with <em>pplacer</em>.</p>
+<div id="resolving-the-pplacer-issue" class="section level1">
+<h1>Resolving the <strong>pplacer</strong> issue</h1>
+<p>Following approach was used to get the pplacer working on the demo
+dataset</p>
+<p><strong>Note</strong>: <strong>pplacer</strong> is notoriously
+finicky about <strong>fasta headers</strong>, I learned it while trying
+to process this data.</p>
+<div id="dataset-used" class="section level2">
+<h2>Dataset used</h2>
+<p>I used the Endo dataset Ashley provided.
+<strong>Location</strong></p>
+<p><em>/data/gpfs/projects/punim1682/kshitij/mdap-workflow-comparison/development/mdap-dungan-fatcat/barrnap_branch_ashley/kshitij_barrnap_trial</em></p>
+</div>
+<div id="steps-involved" class="section level2">
+<h2>Steps involved</h2>
+<div id="extract-16s-rrna-sequences-using-barrnap"
+class="section level3">
+<h3><strong>Extract 16S rRNA sequences using barrnap</strong></h3>
+<pre class="console"><code>for fna in ALB032_contigs.fna ALB051_contigs.fna ALB060_contigs.fna ALB091_contigs.fna ALB115_contigs.fna ALB122_contigs.fna ALC013_$
+
+do
+barrnap -k bac --threads 8 -o rrna_$fna &lt; $fna &gt; gff_$fna
+done
+
+grep -A 1 --no-filename &quot;^&gt;16S_rRNA&quot; rrna_* | grep -v &quot;^--&quot; &gt; 16sENDO.fna</code></pre>
+</div>
+<div id="remove-identical-sequences" class="section level3">
+<h3><strong>Remove identical sequences</strong></h3>
+<p><em>pplacer doesn’t like 0 branch lengths i.e. identical sequences in
+the tree so removed them using</em> <a
+href="https://seqmagick.readthedocs.io/en/latest/index.html">seqmagick</a></p>
+<pre class="console"><code>seqmagick convert --deduplicate-sequences 16sENDO.fna 16SENDO_deduplicated.fasta</code></pre>
+</div>
+<div id="modify-the-headers-of-the-fasta-file" class="section level3">
+<h3><strong>Modify the headers of the fasta file</strong></h3>
+<p><strong>I noticed that when aligning and creating the tree, headers
+were being trimmed, creating the mismatch. So simplify the
+headers</strong></p>
+</div>
+<div id="perform-the-alignment-using-clustal-omega"
+class="section level3">
+<h3><strong>Perform the alignment using clustal-omega</strong></h3>
+<pre class="console"><code>clustalo -i 16SENDO_deduplicated.fasta -o kshitij_16sENDO_clustalo_aln.fa -t DNA</code></pre>
+</div>
+<div id="create-a-reference-phylogenetic-tree" class="section level3">
+<h3><strong>Create a reference phylogenetic tree</strong></h3>
+<p>_I used <strong>FastTree</strong> with <em>GTR-GAMMA_model to create
+the reference phylogenetic tree. For FATCAT, we should use
+<strong>RAxML</strong></em></p>
+<pre class="console"><code>FastTree -nt -gamma -gtr -log kshitij_fasttree.log kshitij_16sENDO_clustalo_aln.fa &gt; kshitij_fasttree.tre</code></pre>
+</div>
+<div id="prepare-the-reference-package" class="section level3">
+<h3><strong>Prepare the reference package</strong></h3>
+<p>Since pplacer has been update, it now requires us to create a
+<strong>reference package</strong>. I created this using <a
+href="https://github.com/fhcrc/taxtastic">Taxtastic</a></p>
+<pre class="console"><code>taxit create -l endozoicomonas_16S -P endo.refpkg --aln-fasta kshitij_16sENDO_clustalo_aln.fa --tree-stats kshitij_fasttree.log --tree-file kshitij_fasttree.tre</code></pre>
+</div>
+<div id="perform-phylogenetic-placement-of-the-input-seqs-using-pplacer"
+class="section level3">
+<h3><strong>Perform phylogenetic placement of the input seqs using <a
+href="https://matsen.github.io/pplacer/generated_rst/pplacer.html">pplacer</a></strong></h3>
+<p><em>Important to note is that <strong>pplacer</strong> takes
+alignment file (a combination of reference sequences and query
+sequences) as input</em></p>
+<pre class="console"><code>pplacer -m WAG -j 1 -c endo.refpkg ENDOout.fa -o test_pplacer</code></pre>
+</div>
+</div>
+</div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
@@ -516,6 +629,8 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -548,6 +663,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
