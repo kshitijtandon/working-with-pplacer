@@ -10,4 +10,4 @@ editor_options:
 
 Welcome to my research website.
 
-Click on this [analysis](Pplacer_work.html) to approach used to setup and work with _pplacer_.
+Click on this [analysis](Pplacer_work.html) to approach used to setup pplacer for work in any phylogenetic placement workflow.
